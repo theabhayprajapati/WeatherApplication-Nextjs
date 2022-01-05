@@ -4,6 +4,10 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    fontFamily: {
+      monserat: ['Montserrat'],
+      // Ensure fonts with spaces have " " surrounding it.
+    },
     extend: {},
   },
   plugins: [],
