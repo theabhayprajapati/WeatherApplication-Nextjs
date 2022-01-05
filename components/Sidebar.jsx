@@ -21,11 +21,10 @@ const Sidebar = () => {
   const clearinput = () => {
     setsearchcity('')
   }
- 
 
   return (
-    <div className="px-5">
-      <div className="flex  space-x-3 justify-between ">
+    <div className="px-2 md:p-5">
+      <div className="flex space-x-3 justify-between ">
         {/* SEarch */}
         <div className="flex space-x-3 mb-5">
           <SearchIcon className="h-7 w-7 " />

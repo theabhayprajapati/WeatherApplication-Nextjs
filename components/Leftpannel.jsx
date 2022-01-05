@@ -44,13 +44,13 @@ const Leftpannel = () => {
   // console.log(apiin)
   function changeaqi() {}
   return (
-    <div className="md:px-8">
+    <div className="p-2 md:px-8 items-center mt-10">
       <div className="text-xl font-medium">
         {/* //todo todays weatger highlist */}
         <div className="font-bold text-2xl mb-5">
           <h2>Todays Weather in Mumbai</h2>
         </div>
-        <div className="md:grid md:grid-rows-2 md:grid-cols-3 md:gap-10 flex overflow-x-scroll ">
+        <div className="p-2 grid grid-cols-3 space-x-2 grid-rows-2 z-0 overflow-x-scroll ">
           <div className="bone">
             UV Index
             <h3 className="absolute top-[50%] text-center text-4xl text-black">
