@@ -50,7 +50,7 @@ const Leftpannel = () => {
         <div className="font-bold text-2xl mb-5">
           <h2>Todays Weather in Mumbai</h2>
         </div>
-        <div className="p-2 space-y-3 ">
+        <div className="p-2 space-y-3 flex flex-col justify-evenly  ">
           <div className="bone">
             UV Index
             <h3 className="absolute top-[50%] text-center text-4xl text-black">

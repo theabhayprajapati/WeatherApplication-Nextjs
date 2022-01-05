@@ -42,7 +42,7 @@ const Sidebar = () => {
         </div>
         <XIcon className="h-7 w-7" onClick={clearinput} />
       </div>
-      <div className="bg-yellow-300  mb-5 rounded-3xl w-[100%] h-48 shadow-xl"></div>
+      <div className="bg-yellow-300   mb-5 rounded-3xl w-[100%] h-48 shadow-xl hover:scale-105 ease-out transition-all"></div>
 
       {/* infomation */}
 
@@ -89,7 +89,7 @@ const Sidebar = () => {
         </div>
       </div>
       {/* location image */}
-      <div className="bg-white   shadow-xl rounded-3xl h-52 relative ">
+      <div className="bg-white hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 relative ">
         <h3 className="absolute to  44%] text-4xl left-[27%]"></h3>
       </div>
     </div>
