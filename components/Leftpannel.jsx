@@ -86,7 +86,7 @@ const Leftpannel = () => {
           </div>
           <div className="bone">
             Country
-            <h3 className="absolute top-[50%] text-center text-4xl text-black">
+            <h3 className="absolute top-[50%] text-center text-4xl text-black grid  place-items-center">
               {typeof cityvalue.location === 'undefined'
                 ? 'Null'
                 : cityvalue.location.country}
