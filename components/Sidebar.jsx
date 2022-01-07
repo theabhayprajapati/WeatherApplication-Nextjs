@@ -137,8 +137,8 @@ const Sidebar = () => {
         </div>
       </div>
       {/* location image */}
-      <div className="bg-white hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 relative ">
-        <h3 className="relative left-[50%] top-[50%]"> Mumbai</h3>
+      <div className="bg-white hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center ">
+        <h3 className="text-4xl"> Mumbai</h3>
       </div>
     </div>
   )
