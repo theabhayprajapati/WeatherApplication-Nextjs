@@ -28,7 +28,7 @@ const Leftpannel = () => {
   useEffect(() => {
     checkcolor()
   }, [cityvalue])
-  // console.log(whichcity)
+  console.log(whichcity)
   return (
     <div className="p-2 md:px-8">
       <div className="text-xl font-medium">
@@ -36,7 +36,7 @@ const Leftpannel = () => {
         <div className="font-bold text-2xl mb-5">
           <h2>Todays Weather in {whichcity}</h2>
         </div>
-        <div className="p-2 gap-5 flex md:flex-col lg:grid-cols-3 lg:grid justify-evenly  ">
+        <div className="p-2 gap-5 flex  flex-col lg:grid-cols-3 lg:grid items-center  ">
           <div className="bone">
             UV Index
             <h3 className="absolute top-[50%] text-center text-4xl text-black">
@@ -86,7 +86,7 @@ const Leftpannel = () => {
           </div>
           <div className="bone">
             Country
-            <h3 className="absolute top-[50%] text-center text-4xl text-black grid  place-items-center">
+            <h3 className="absolute top-[50%] text-center text-4xl text-black">
               {typeof cityvalue.location === 'undefined'
                 ? 'Null'
                 : cityvalue.location.country}
