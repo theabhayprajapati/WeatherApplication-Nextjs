@@ -1,12 +1,11 @@
 import { SearchIcon, XIcon } from '@heroicons/react/outline'
-import { data } from 'autoprefixer'
 import { useEffect, useState, useRef } from 'react'
 import { useRecoilState } from 'recoil'
-import { cityname, locationname, weatherdata } from './Store'
+import { locationname, weatherdata } from './Store'
 
 const Sidebar = () => {
   const [getweather, setgetweather] = useRecoilState(weatherdata)
-  const [cityvalue, setcityvalue] = useState('London')
+  const [cityvalue, setcityvalue] = useState('Delhi')
 
   function fetchweather() {
     fetch(
@@ -31,37 +30,22 @@ const Sidebar = () => {
   useEffect(() => {
     fetchingimage()
   }, [cityvalue])
-  // console.log(
-  //   typeof getweather.location === 'undefined'
-  //     ? 'loading'
-  //     : getweather.location.name,
-  // )
-
   let randomvalue = Math.floor(Math.random() * 5)
   console.log(randomvalue)
   let arraynon = [2, 4, 5, 6, 7, 9]
   console.log(arraynon[Math.floor(Math.random() * arraynon.length)])
   console.log(
     typeof cityimage.results === 'undefined'
-      ? console.log('prinintg ond oudf d')
+      ? console.log('')
       : cityimage.results[Math.floor(Math.random() * cityimage.results.length)]
           .urls.full,
   )
 
-  const [locationnm, setlocationnm] = useState(locationname)
-  useEffect(() => {
-    setlocationnm(
-      typeof getweather.location === 'undefined'
-        ? 'loading'
-        : getweather.location.name,
-    )
-  }, [cityvalue])
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       setcityvalue(event.target.value) & console.log(event.target.value)
     }
   }
-  // console.log(locationnm)
   return (
     <div className="px-2 md:p-5">
       <div className="flex space-x-3 justify-between ">
@@ -137,8 +121,12 @@ const Sidebar = () => {
         </div>
       </div>
       {/* location image */}
-      <div className="bg-white hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center ">
-        <h3 className=""> Mumbai</h3>
+      <div className="bg-white hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center text-3xl ">
+        <h3 className="">
+          {typeof getweather.location === 'undefined'
+            ? 'Null'
+            : getweather.location.name}
+        </h3>
       </div>
     </div>
   )
