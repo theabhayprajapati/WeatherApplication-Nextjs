@@ -36,7 +36,7 @@ const Leftpannel = () => {
         <div className="font-bold text-2xl mb-5">
           <h2>Todays Weather in {whichcity}</h2>
         </div>
-        <div className="p-2 gap-5 flex  flex-col lg:grid-cols-3 lg:grid items-center  ">
+        <div className="p-2 gap-5 flex  flex-col items-center md:flex-row md:justify-around md:flex-wrap lg:grid-cols-3  ">
           <div className="bone">
             UV Index
             <h3 className="absolute top-[50%] text-center text-4xl text-black">
