@@ -6,8 +6,8 @@ import { locationname, weatherdata } from './Store'
 const Sidebar = () => {
   const [getweather, setgetweather] = useRecoilState(weatherdata)
   const [cityvalue, setcityvalue] = useState('Delhi')
-  const apiket = process.env.API_KEY
-  const unsplashkey = process.env.UNSPLASH_KEY
+  const apiket = '6429569d006849fb94a134714220401'
+  const unsplashkey = 'uFOc6WEV93YMHW4x92VgxuB03crQlU45fAA-TE5uW0I'
   function fetchweather() {
     fetch(
       `http://api.weatherapi.com/v1/current.json?key=${apiket}&q=${cityvalue}&aqi=yes`,
