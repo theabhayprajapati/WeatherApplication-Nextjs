@@ -1,26 +1,15 @@
 import { useEffect, useState } from 'react'
-import { cityname } from './Sidebar.jsx'
+import { useRecoilValue } from 'recoil'
+import { locationname, weatherdata } from './Store'
+
 const Leftpannel = () => {
-  cityname
-  const [getsearchedlp, setgetsearchedlplp] = useState({})
-  useEffect(() => {
-    fetch(
-      'http://api.weatherapi.com/v1/current.json?key=6429569d006849fb94a134714220401&q=mumbai&aqi=yes',
-    )
-      .then((resp) => resp.json())
-      .then((data) => setgetsearchedlplp(data))
-      .catch((err) => console.log(err))
-  }, [])
-  console.log(getsearchedlp)
   const [aqifinder, setaqifinder] = useState('bg-white')
-
+  const cityvalue = useRecoilValue(weatherdata)
   const useqai =
-    typeof getsearchedlp.current === 'undefined'
+    typeof cityvalue.current === 'undefined'
       ? 'Null'
-      : Math.round(getsearchedlp.current.air_quality.pm10)
-
-  console.log(useqai)
-
+      : Math.round(cityvalue.current.air_quality.pm10)
+  const whichcity = useRecoilValue(locationname)
   const checkcolor = () => {
     if ((useqai > 0) & (useqai < 50)) {
       setaqifinder('bg-green-400')
@@ -38,72 +27,69 @@ const Leftpannel = () => {
   }
   useEffect(() => {
     checkcolor()
-  }, [])
-  // let apiin = `{typeof getsearchedlp.current === 'undefined'? 'Null': Math.round(getsearchedlp.current.air_quality.pm10)}`
-
-  // console.log(apiin)
-  function changeaqi() {}
+  }, [cityvalue])
+  // console.log(whichcity)
   return (
-    <div className="p-2 md:px-8 mt-10">
+    <div className="p-2 md:px-8">
       <div className="text-xl font-medium">
         {/* //todo todays weatger highlist */}
         <div className="font-bold text-2xl mb-5">
-          <h2>Todays Weather in Mumbai</h2>
+          <h2>Todays Weather in {whichcity}</h2>
         </div>
-        <div className="p-2 space-y-3 flex flex-col justify-evenly  ">
+        <div className="p-2 gap-5 flex md:flex-col lg:grid-cols-3 lg:grid justify-evenly  ">
           <div className="bone">
             UV Index
             <h3 className="absolute top-[50%] text-center text-4xl text-black">
-              {typeof getsearchedlp.current === 'undefined'
+              {typeof cityvalue.current === 'undefined'
                 ? 'Null'
-                : getsearchedlp.current.uv}
+                : cityvalue.current.uv}
             </h3>
           </div>
           <div className="bone">
             Wind Status
             <h3 className="absolute top-[50%] text-center text-4xl text-black">
-              {typeof getsearchedlp.current === 'undefined'
+              {typeof cityvalue.current === 'undefined'
                 ? 'Null'
-                : getsearchedlp.current.wind_kph}
+                : cityvalue.current.wind_kph}
               km/h
             </h3>
             <h4 className="">
-              {typeof getsearchedlp.current === 'undefined'
+              {typeof cityvalue.current === 'undefined'
                 ? 'Null'
-                : getsearchedlp.current.wind_dir}
+                : cityvalue.current.wind_dir}
             </h4>
           </div>
           <div className="bone">
             Humidity
             <h3 className="absolute top-[50%] text-center text-4xl text-black">
-              {typeof getsearchedlp.current === 'undefined'
+              {typeof cityvalue.current === 'undefined'
                 ? 'Null'
-                : getsearchedlp.current.humidity}
+                : cityvalue.current.humidity}
             </h3>
           </div>
           <div className="bone">
             Visibility{' '}
             <h3 className="absolute top-[50%] text-center text-4xl text-black">
-              {typeof getsearchedlp.current === 'undefined'
+              {typeof cityvalue.current === 'undefined'
                 ? 'Null'
-                : getsearchedlp.current.vis_km}
+                : cityvalue.current.vis_km}
             </h3>
           </div>
 
           <div className={`bone ${aqifinder}`}>
             Air Quality
             <h3 className="absolute top-[50%] text-center text-4xl text-black">
-              {typeof getsearchedlp.current === 'undefined'
+              {typeof cityvalue.current === 'undefined'
                 ? 'Null'
-                : Math.round(getsearchedlp.current.air_quality.pm10)}
+                : Math.round(cityvalue.current.air_quality.pm10)}
             </h3>
           </div>
           <div className="bone">
             Country
             <h3 className="absolute top-[50%] text-center text-4xl text-black">
-              {typeof getsearchedlp.location === 'undefined'
+              {typeof cityvalue.location === 'undefined'
                 ? 'Null'
-                : getsearchedlp.location.country}
+                : cityvalue.location.country}
             </h3>
           </div>
         </div>

@@ -8,6 +8,6 @@
 
 @layer components {
     .bone {
-        @apply bg-white h-[200px] w-[250px] sm:w-[200px] shadow-xl relative rounded-2xl text-gray-500 p-3 md:p-5 md:cursor-pointer hover:scale-105 ease-out transition-all
+        @apply bg-white h-[200px] w-[250px] sm:w-[200px] shadow-xl relative rounded-2xl text-gray-500 p-3 md:p-5 md:cursor-pointer hover:scale-90 ease-out transition-all
     }
 }
