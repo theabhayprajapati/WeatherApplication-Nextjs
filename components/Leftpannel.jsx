@@ -9,27 +9,27 @@ const Leftpannel = () => {
     typeof cityvalue.current === 'undefined'
       ? 'Null'
       : Math.round(cityvalue.current.air_quality.pm10)
-
+  console.log(useqai)
   const checkcolor = () => {
     if ((useqai > 0) & (useqai < 50)) {
-      setaqifinder('bg-green-400')
+      setaqifinder('green-400')
     } else if ((useqai > 51) & (useqai < 100)) {
-      setaqifinder('bg-yellow-400')
+      setaqifinder('yellow-400')
     } else if ((useqai > 101) & (useqai < 150)) {
-      setaqifinder('bg-orange-400')
+      setaqifinder('orange-400')
     } else if ((useqai > 151) & (useqai < 200)) {
-      setaqifinder('bg-red-400')
+      setaqifinder('red-400')
     } else if ((useqai > 201) & (useqai < 300)) {
-      setaqifinder('bg-purple-400')
+      setaqifinder('purple-400')
     } else if (useqai > 300) {
-      setaqifinder('bg-red-900')
+      setaqifinder('red-900')
     }
   }
   useEffect(() => {
     checkcolor()
   }, [cityvalue])
   return (
-    <div className="p-2 md:px-8">
+    <div className="p-2 md:px-8 ">
       <div className="text-xl font-medium">
         {/* //todo todays weatger highlist */}
         <div className="font-bold text-2xl mb-5">
@@ -80,7 +80,7 @@ const Leftpannel = () => {
             </h3>
           </div>
 
-          <div className={`bone ${aqifinder}`}>
+          <div className={`bone bg-${aqifinder}`}>
             Air Quality
             <h3 className="bonetext text-black">
               {typeof cityvalue.current === 'undefined'

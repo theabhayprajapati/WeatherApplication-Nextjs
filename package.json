@@ -14,7 +14,8 @@
     "react-gauge-chart": "^0.4.0",
     "react-slick": "^0.28.1",
     "recoil": "^0.5.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tailwindcss-neumorphism": "^0.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
