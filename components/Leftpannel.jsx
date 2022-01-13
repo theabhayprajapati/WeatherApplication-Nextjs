@@ -2,14 +2,18 @@ import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { weatherdata } from './Store'
 
-const Leftpannel = () => {
-  const [aqifinder, setaqifinder] = useState('bg-white')
+const Leftpannel = ({ thememode, setthememode }) => {
+  const [aqifinder, setaqifinder] = useState('white')
   const cityvalue = useRecoilValue(weatherdata)
+  const changetheme = () => {
+    return setthememode(!thememode)
+  }
   const useqai =
     typeof cityvalue.current === 'undefined'
       ? 'Null'
       : Math.round(cityvalue.current.air_quality.pm10)
   console.log(useqai)
+  console.log(`bg-${aqifinder}`)
   const checkcolor = () => {
     if ((useqai > 0) & (useqai < 50)) {
       setaqifinder('green-400')
@@ -39,19 +43,27 @@ const Leftpannel = () => {
               ? 'Null'
               : cityvalue.location.name}{' '}
           </h2>
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              setthememode(!thememode)
+            }}
+          >
+            {thememode ? 'turn off lights' : 'turn on lights'}
+          </button>
         </div>
-        <div className="p-2 gap-5 flex  flex-col items-center md:flex-row md:justify-around md:flex-wrap lg:grid-cols-3  ">
-          <div className="bone">
+        <div className="p-2 gap-5 flex  flex-col items-center md:flex-row md:justify-around md:flex-wrap lg:grid-cols-3 text-black ">
+          <div className={thememode ? 'bone' : 'bonedark'}>
             UV Index
-            <h3 className="bonetext text-black">
+            <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
                 ? 'Null'
                 : cityvalue.current.uv}
             </h3>
           </div>
-          <div className="bone">
+          <div className={thememode ? 'bone' : 'bonedark'}>
             Wind Status
-            <h3 className="bonetext text-black">
+            <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
                 ? 'Null'
                 : cityvalue.current.wind_kph}
@@ -63,34 +75,37 @@ const Leftpannel = () => {
                 : cityvalue.current.wind_dir}
             </h4>
           </div>
-          <div className="bone">
+          <div className={thememode ? 'bone' : 'bonedark'}>
             Humidity
-            <h3 className="bonetext text-black">
+            <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
                 ? 'Null'
                 : cityvalue.current.humidity}
             </h3>
           </div>
-          <div className="bone">
+          <div className={thememode ? 'bone' : 'bonedark'}>
             Visibility{' '}
-            <h3 className="bonetext text-black">
+            <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
                 ? 'Null'
                 : cityvalue.current.vis_km}
             </h3>
           </div>
-
-          <div className={`bone bg-${aqifinder}`}>
+          <div className={thememode ? 'bone' : 'bonedark'}>
             Air Quality
-            <h3 className="bonetext text-black">
+            <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
-                ? 'Null'
+                ? 'lading'
                 : Math.round(cityvalue.current.air_quality.pm10)}
             </h3>
           </div>
-          <div className="bone">
+          <div
+            className={
+              thememode ? `bone bg-${aqifinder}` : 'bonedark bg-${aqifinder}'
+            }
+          >
             Country
-            <h3 className="bonetext text-black">
+            <h3 className="bonetext ">
               {typeof cityvalue.location === 'undefined'
                 ? 'Null'
                 : cityvalue.location.country}

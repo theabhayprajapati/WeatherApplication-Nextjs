@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useRecoilState } from 'recoil'
 import { locationname, weatherdata } from './Store'
 
-const Sidebar = () => {
+const Sidebar = ({ thememode, setthememode }) => {
   const [getweather, setgetweather] = useRecoilState(weatherdata)
   const [cityvalue, setcityvalue] = useState('Delhi')
   const apiket = '6429569d006849fb94a134714220401'
@@ -58,8 +58,13 @@ const Sidebar = () => {
             type="search"
             onKeyDown={handleKeyDown}
             placeholder="Search Places...."
-            className="bg-transparent text-black text-xl pl-1  placeholder-black"
+            className={
+              thememode
+                ? 'bg-transparent text-black text-xl pl-1  placeholder-black'
+                : 'bg-transparent text-white text-xl pl-1  placeholder-white'
+            }
           />
+          {console.log(thememode)}
         </div>
         <XIcon className="h-7 w-7" />
       </div>
@@ -122,7 +127,13 @@ const Sidebar = () => {
         </div>
       </div>
       {/* location image */}
-      <div className="bg-white hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center text-3xl ">
+      <div
+        className={
+          thememode
+            ? 'bg-white hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center text-3xl '
+            : 'bg-gray-700 hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center text-3xl '
+        }
+      >
         <h3 className="">
           {typeof getweather.location === 'undefined'
             ? 'Null'
