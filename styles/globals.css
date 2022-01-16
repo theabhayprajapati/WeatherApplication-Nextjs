@@ -8,7 +8,8 @@
 
 @layer components {
     .bone {
-        @apply bg-white h-[200px] w-[250px] sm:w-[200px] drop-shadow-xl relative shadow-white rounded-2xl text-gray-500 p-3 md:p-5 md:cursor-pointer hover:scale-90 ease-out transition-all
+        @apply bg-white h-[200px] sm:w-[200px] drop-shadow-xl relative shadow-white 
+        rounded-2xl text-gray-500 p-3 md:p-5 md:cursor-pointer hover:scale-90 ease-out transition-all
     }
     .bonedark {
         @apply bg-gray-700 h-[200px] w-[250px] sm:w-[200px] drop-shadow-xl  relative rounded-2xl text-gray-100 p-3 md:p-5 md:cursor-pointer hover:scale-90 ease-out transition-all

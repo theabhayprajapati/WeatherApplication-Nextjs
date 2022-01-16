@@ -29,7 +29,7 @@ const Leftpannel = ({ thememode, setthememode }) => {
     } else if ((useqai > 201) & (useqai < 300)) {
       setaqifinder('bg-purple-400')
     } else if (useqai > 300) {
-      setaqifinder('bg-red-900')
+      setaqifinder('bg-red-500')
     }
   }
   useEffect(() => {
@@ -94,7 +94,7 @@ const Leftpannel = ({ thememode, setthememode }) => {
                 : cityvalue.current.vis_km}
             </h3>
           </div>
-          <div className={thememode ? 'bone' : 'bonedark'}>
+          <div className={thememode ? `bone ${aqifinder}` : ` ${aqifinder}`}>
             Air Quality
             <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
@@ -102,11 +102,7 @@ const Leftpannel = ({ thememode, setthememode }) => {
                 : Math.round(cityvalue.current.air_quality.pm10)}
             </h3>
           </div>
-          <div
-            className={
-              thememode ? `bone ${aqifinder}` : 'bonedark bg-${aqifinder}'
-            }
-          >
+          <div className={thememode ? `bone` : 'bonedark bg-${aqifinder}'}>
             Country
             <h3 className="bonetext ">
               {typeof cityvalue.location === 'undefined'
