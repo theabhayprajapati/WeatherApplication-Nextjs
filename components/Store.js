@@ -8,3 +8,7 @@ export const thememodelive = atom({
   key: 'currentheme',
   default: 'light',
 })
+export const whichtemp = atom({
+  key: 'measure',
+  default: true,
+})

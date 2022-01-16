@@ -1,100 +1,114 @@
+import { LocationMarkerIcon } from '@heroicons/react/outline'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-import { weatherdata } from './Store'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { weatherdata, whichtemp } from './Store'
 
 const Leftpannel = ({ thememode, setthememode }) => {
+  const [measuretemp, setmeasuretemp] = useRecoilState(whichtemp)
   const [aqifinder, setaqifinder] = useState('white')
   const cityvalue = useRecoilValue(weatherdata)
   const changetheme = () => {
     return setthememode(!thememode)
   }
-  let durrentcolor = 'bg-green-500'
-
   const useqai =
     typeof cityvalue.current === 'undefined'
-      ? 'Null'
-      : Math.round(cityvalue.current.air_quality.pm10)
+      ? 'loading...'
+      : Math.round(cityvalue.current.air_quality.pm2_5)
 
-  console.log(useqai)
   const [setemoji, setsetemoji] = useState()
 
   const checkcolor = () => {
-    if ((useqai > 0) & (useqai < 50)) {
+    if ((useqai > 0) & (useqai < 30)) {
       setsetemoji('😂')
-      setaqifinder('bg-green-400')
-    } else if ((useqai > 51) & (useqai < 100)) {
+      setaqifinder('bg-green-500')
+    } else if ((useqai > 31) & (useqai < 60)) {
       setsetemoji('😊')
-      setaqifinder('bg-yellow-400')
-    } else if ((useqai > 101) & (useqai < 150)) {
+      setaqifinder('bg-green-400')
+    } else if ((useqai > 61) & (useqai < 90)) {
       setsetemoji('🥺')
-      setaqifinder('bg-orange-400')
-    } else if ((useqai > 151) & (useqai < 200)) {
+      setaqifinder('bg-yellow-400')
+    } else if ((useqai > 91) & (useqai < 120)) {
       setsetemoji('😲')
-      setaqifinder('bg-red-400')
-    } else if ((useqai > 201) & (useqai < 300)) {
-      setsetemoji('🤢')
-      setaqifinder('bg-purple-400')
-    } else if (useqai > 300) {
-      setsetemoji('😷')
       setaqifinder('bg-red-500')
+    } else if ((useqai > 121) & (useqai < 250)) {
+      setsetemoji('🤢')
+      setaqifinder('bg-red-700')
+    } else if (useqai > 250) {
+      setsetemoji('😷')
+      setaqifinder('bg-red-900')
     }
   }
   useEffect(() => {
     checkcolor()
   }, [cityvalue])
+  function changemeaure() {
+    setmeasuretemp(!measuretemp)
+  }
+
   return (
-    <div className="p-2 md:px-8 ">
-      <div className="text-xl font-medium">
+    <div className="p-2 md:px-8">
+      <div className="text-xl font-medium bgre">
         {/* //todo todays weatger highlist */}
-        <div className="font-bold text-2xl mb-5">
+        <div className="font-bold text-2xl mb-5 flex justify-between">
           <h2>
             Todays Weather in{' '}
             {typeof cityvalue.location === 'undefined'
-              ? 'Null'
+              ? 'loading...'
               : cityvalue.location.name}{' '}
           </h2>
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              setthememode(!thememode)
-            }}
-          >
-            {thememode ? 'turn off lights' : 'turn on lights'}
-          </button>
+          <div className="flex space-x-4">
+            <button onClick={changemeaure} className="text-lg">
+              {measuretemp ? 'Get in Feh' : 'Get in Cel.'}
+            </button>
+          </div>
         </div>
-        <div className="p-2 gap-5 flex  flex-col items-center md:flex-row md:justify-around md:flex-wrap lg:grid-cols-3 text-black w-[100%] ">
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            setthememode(!thememode)
+          }}
+        >
+          {thememode ? 'turn 🏮 lights' : 'turn 💡 lights'}
+        </button>
+        <div className="p-2 gap-5 flex flex-col items-center md:flex-row md:justify-around md:flex-wrap lg:grid-cols-3 text-black w-[100%] ">
           <div className={thememode ? 'bone' : 'bonedark'}>
             UV Index
             <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
-                ? 'Null'
+                ? 'loading...'
                 : cityvalue.current.uv}
             </h3>
           </div>
+
           <div
             className={
-              thememode ? `bone ${aqifinder}` : `bonedark  ${aqifinder}`
+              thememode ? `bone ${aqifinder} ` : `bonedark  ${aqifinder}`
             }
           >
             Air Quality
-            <h3 className="bonetext ">
-              {typeof cityvalue.current === 'undefined'
-                ? 'lading'
-                : Math.round(cityvalue.current.air_quality.pm10)}
-              {setemoji}
-            </h3>
+            <div className="flex flex-col">
+              <h3 className="bonetext flex">
+                {typeof cityvalue.current === 'undefined'
+                  ? 'loading...'
+                  : Math.round(cityvalue.current.air_quality.pm2_5)}
+                {setemoji}
+                <span className="text-sm text-white">pm25</span>
+              </h3>
+            </div>
           </div>
+
           <div className={thememode ? 'bone' : 'bonedark'}>
             Wind Status
             <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
-                ? 'Null'
+                ? 'loading...'
                 : cityvalue.current.wind_kph}
               km/h
             </h3>
-            <h4 className="">
+            <h4 className="flex mt-2 text-black">
+              <LocationMarkerIcon className="h-8 w-8 rotate-45" />
               {typeof cityvalue.current === 'undefined'
-                ? 'Null'
+                ? 'loading...'
                 : cityvalue.current.wind_dir}
             </h4>
           </div>
@@ -102,7 +116,7 @@ const Leftpannel = ({ thememode, setthememode }) => {
             Humidity
             <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
-                ? 'Null'
+                ? 'loading...'
                 : cityvalue.current.humidity}
             </h3>
           </div>
@@ -110,8 +124,9 @@ const Leftpannel = ({ thememode, setthememode }) => {
             Visibility{' '}
             <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
-                ? 'Null'
+                ? 'loading...'
                 : cityvalue.current.vis_km}
+              {''} Km
             </h3>
           </div>
 
@@ -119,7 +134,7 @@ const Leftpannel = ({ thememode, setthememode }) => {
             Country
             <h3 className="bonetext ">
               {typeof cityvalue.location === 'undefined'
-                ? 'Null'
+                ? 'loading...'
                 : cityvalue.location.country}
             </h3>
           </div>
