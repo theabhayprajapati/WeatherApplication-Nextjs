@@ -68,7 +68,7 @@ const Sidebar = ({ thememode, setthememode }) => {
         </div>
         <XIcon className="h-7 w-7" />
       </div>
-      <div className="mb-5 rounded-3xl w-[100%] h-48 shadow-xl hover:scale-105 ease-out transition-all">
+      <div className="mb-5 rounded-3xl w-[100%] h-48 shadow-xl hover:scale-105 ease-out transition-all drop-shadow-lg">
         <img
           src={
             typeof cityimage.results === 'undefined'
@@ -78,13 +78,13 @@ const Sidebar = ({ thememode, setthememode }) => {
                 ].urls.full
           }
           className="object-cover rounded-3xl w-[100%] h-48"
-          alt="https://images.unsplash.com/photo-1623356301071-6a39cc58a004?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1262&q=80"
-        ></img>
+          alt="loading"
+        />
       </div>
 
       {/* infomation */}
 
-      <div className="mb-5">
+      <div className="mb-5 drop-shadow-lg">
         <h1 className="">
           <span className="text-7xl  ">
             {typeof getweather.current === 'undefined'
@@ -94,7 +94,7 @@ const Sidebar = ({ thememode, setthememode }) => {
           </span>
         </h1>
       </div>
-      <div className="mb-5">
+      <div className="mb-5 drop-shadow-lg">
         <h5 className="text-4xl">
           {/* {cityvalue}, {''} {''} */}
           <span>
@@ -118,7 +118,7 @@ const Sidebar = ({ thememode, setthememode }) => {
             }
             alt=""
           />
-          <h3 className="">
+          <h3 className="drop-shadow-lg">
             {' '}
             {typeof getweather.current === 'undefined'
               ? 'Null'
@@ -130,8 +130,8 @@ const Sidebar = ({ thememode, setthememode }) => {
       <div
         className={
           thememode
-            ? 'bg-white hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center text-3xl '
-            : 'bg-gray-700 hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center text-3xl '
+            ? 'bg-white hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center text-3xl drop-shadow-lg   '
+            : 'bg-gray-700 hover:scale-105 ease-out transition-all shadow-xl rounded-3xl h-52 grid place-items-center text-3xl  '
         }
       >
         <h3 className="">

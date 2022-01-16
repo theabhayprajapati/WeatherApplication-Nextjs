@@ -55,13 +55,27 @@ const Leftpannel = ({ thememode, setthememode }) => {
             {thememode ? 'turn off lights' : 'turn on lights'}
           </button>
         </div>
-        <div className="p-2 gap-5 flex  flex-col items-center md:flex-row md:justify-around md:flex-wrap lg:grid-cols-3 text-black ">
+        <div className="p-2 gap-5 flex  flex-col items-center md:flex-row md:justify-around md:flex-wrap lg:grid-cols-3 text-black w-[100%] ">
           <div className={thememode ? 'bone' : 'bonedark'}>
             UV Index
             <h3 className="bonetext ">
               {typeof cityvalue.current === 'undefined'
                 ? 'Null'
                 : cityvalue.current.uv}
+            </h3>
+          </div>
+          <div
+            className={
+              thememode
+                ? `bone ${aqifinder}`
+                : `bonedark  ${aqifinder}`
+            }
+          >
+            Air Quality
+            <h3 className="bonetext ">
+              {typeof cityvalue.current === 'undefined'
+                ? 'lading'
+                : Math.round(cityvalue.current.air_quality.pm10)}
             </h3>
           </div>
           <div className={thememode ? 'bone' : 'bonedark'}>
@@ -94,15 +108,8 @@ const Leftpannel = ({ thememode, setthememode }) => {
                 : cityvalue.current.vis_km}
             </h3>
           </div>
-          <div className={thememode ? `bone ${aqifinder}` : ` ${aqifinder}`}>
-            Air Quality
-            <h3 className="bonetext ">
-              {typeof cityvalue.current === 'undefined'
-                ? 'lading'
-                : Math.round(cityvalue.current.air_quality.pm10)}
-            </h3>
-          </div>
-          <div className={thememode ? `bone` : 'bonedark bg-${aqifinder}'}>
+
+          <div className={thememode ? `bone` : 'bonedark'}>
             Country
             <h3 className="bonetext ">
               {typeof cityvalue.location === 'undefined'
