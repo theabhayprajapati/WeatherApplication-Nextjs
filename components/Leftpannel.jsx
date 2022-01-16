@@ -8,25 +8,28 @@ const Leftpannel = ({ thememode, setthememode }) => {
   const changetheme = () => {
     return setthememode(!thememode)
   }
+  let durrentcolor = 'bg-green-500'
+
   const useqai =
     typeof cityvalue.current === 'undefined'
       ? 'Null'
       : Math.round(cityvalue.current.air_quality.pm10)
+
   console.log(useqai)
-  console.log(`bg-${aqifinder}`)
+
   const checkcolor = () => {
     if ((useqai > 0) & (useqai < 50)) {
-      setaqifinder('green-400')
+      setaqifinder('bg-green-400')
     } else if ((useqai > 51) & (useqai < 100)) {
-      setaqifinder('yellow-400')
+      setaqifinder('bg-yellow-400')
     } else if ((useqai > 101) & (useqai < 150)) {
-      setaqifinder('orange-400')
+      setaqifinder('bg-orange-400')
     } else if ((useqai > 151) & (useqai < 200)) {
-      setaqifinder('red-400')
+      setaqifinder('bg-red-400')
     } else if ((useqai > 201) & (useqai < 300)) {
-      setaqifinder('purple-400')
+      setaqifinder('bg-purple-400')
     } else if (useqai > 300) {
-      setaqifinder('red-900')
+      setaqifinder('bg-red-900')
     }
   }
   useEffect(() => {
@@ -101,7 +104,7 @@ const Leftpannel = ({ thememode, setthememode }) => {
           </div>
           <div
             className={
-              thememode ? `bone bg-${aqifinder}` : 'bonedark bg-${aqifinder}'
+              thememode ? `bone ${aqifinder}` : 'bonedark bg-${aqifinder}'
             }
           >
             Country
