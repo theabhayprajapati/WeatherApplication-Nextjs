@@ -10,7 +10,7 @@ const Sidebar = ({ thememode, setthememode }) => {
   const unsplashkey = 'uFOc6WEV93YMHW4x92VgxuB03crQlU45fAA-TE5uW0I'
   function fetchweather() {
     fetch(
-      `http://api.weatherapi.com/v1/current.json?key=${apiket}&q=${cityvalue}&aqi=yes`,
+      `https://api.weatherapi.com/v1/current.json?key=${apiket}&q=${cityvalue}&aqi=yes`,
     )
       .then((resp) => resp.json())
       .then((data) => setgetweather(data))
