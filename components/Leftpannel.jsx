@@ -16,19 +16,26 @@ const Leftpannel = ({ thememode, setthememode }) => {
       : Math.round(cityvalue.current.air_quality.pm10)
 
   console.log(useqai)
+  const [setemoji, setsetemoji] = useState()
 
   const checkcolor = () => {
     if ((useqai > 0) & (useqai < 50)) {
+      setsetemoji('😂')
       setaqifinder('bg-green-400')
     } else if ((useqai > 51) & (useqai < 100)) {
+      setsetemoji('😊')
       setaqifinder('bg-yellow-400')
     } else if ((useqai > 101) & (useqai < 150)) {
+      setsetemoji('🥺')
       setaqifinder('bg-orange-400')
     } else if ((useqai > 151) & (useqai < 200)) {
+      setsetemoji('😲')
       setaqifinder('bg-red-400')
     } else if ((useqai > 201) & (useqai < 300)) {
+      setsetemoji('🤢')
       setaqifinder('bg-purple-400')
     } else if (useqai > 300) {
+      setsetemoji('😷')
       setaqifinder('bg-red-500')
     }
   }
@@ -66,9 +73,7 @@ const Leftpannel = ({ thememode, setthememode }) => {
           </div>
           <div
             className={
-              thememode
-                ? `bone ${aqifinder}`
-                : `bonedark  ${aqifinder}`
+              thememode ? `bone ${aqifinder}` : `bonedark  ${aqifinder}`
             }
           >
             Air Quality
@@ -76,6 +81,7 @@ const Leftpannel = ({ thememode, setthememode }) => {
               {typeof cityvalue.current === 'undefined'
                 ? 'lading'
                 : Math.round(cityvalue.current.air_quality.pm10)}
+              {setemoji}
             </h3>
           </div>
           <div className={thememode ? 'bone' : 'bonedark'}>
