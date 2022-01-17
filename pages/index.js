@@ -1,10 +1,8 @@
 import Head from 'next/head'
 import { useState } from 'react'
 import { RecoilRoot } from 'recoil'
-import Geolcoation from '../components/Geolocaiton'
 import Leftpannel from '../components/Leftpannel'
 import Sidebar from '../components/Sidebar'
-import Makeobj from '../Makeobj'
 
 function index() {
   const [thememode, setthememode] = useState(true)
