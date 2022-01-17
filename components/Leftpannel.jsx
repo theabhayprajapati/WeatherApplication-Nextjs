@@ -57,12 +57,20 @@ const Leftpannel = ({ thememode, setthememode }) => {
               : cityvalue.location.name}{' '}
           </h2>
           <div className="flex space-x-4">
-            <button onClick={changemeaure} className="text-lg">
+            <button
+              onClick={changemeaure}
+              className={
+                measuretemp
+                  ? 'text-lg bg-blue-600 px-3 py-1 rounded-lg text-white shadow-lg'
+                  : 'text-lg bg-red-500 px-3 py-1 rounded-lg text-white shadow-lg'
+              }
+            >
               {measuretemp ? 'Get in Feh' : 'Get in Cel.'}
             </button>
           </div>
         </div>
         <button
+          className="bg-black text-white px-3 rounded-lg"
           onClick={(e) => {
             e.preventDefault()
             setthememode(!thememode)
@@ -82,7 +90,9 @@ const Leftpannel = ({ thememode, setthememode }) => {
 
           <div
             className={
-              thememode ? `bone ${aqifinder} ` : `bonedark  ${aqifinder}`
+              thememode
+                ? `bone ${aqifinder} text-white `
+                : `bonedark text-white ${aqifinder}`
             }
           >
             Air Quality

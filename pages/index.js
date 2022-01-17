@@ -27,8 +27,6 @@ function index() {
             </div>
             <div className="md:w-[70%]">
               <Leftpannel thememode={thememode} setthememode={setthememode} />
-              <Geolcoation />
-              {/* <Makeobj /> */}
             </div>
           </div>
         </div>

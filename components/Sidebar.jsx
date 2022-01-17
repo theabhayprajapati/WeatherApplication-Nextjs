@@ -7,6 +7,7 @@ import { locationname, weatherdata, whichtemp } from './Store'
 const Sidebar = ({ thememode, setthememode }) => {
   const [getweather, setgetweather] = useRecoilState(weatherdata)
   const [cityvalue, setcityvalue] = useState('Delhi')
+  const [curdate, setcurdate] = useState()
   const [lat, setLat] = useState('19.40448620453243')
   const [lng, setLng] = useState('72.82411247833795')
   const [cityimage, setcityimage] = useState('')
@@ -27,7 +28,7 @@ const Sidebar = ({ thememode, setthememode }) => {
   }, [cityvalue])
   const fetchingimage = () => {
     fetch(
-      `https://api.unsplash.com/search/photos?query=delhi&client_id=uFOc6WEV93YMHW4x92VgxuB03crQlU45fAA-TE5uW0I`,
+      `https://api.unsplash.com/search/photos?query=${cityvalue}&client_id=uFOc6WEV93YMHW4x92VgxuB03crQlU45fAA-TE5uW0I`,
     )
       .then((resp) => resp.json())
       .then((data) => setcityimage(data))
@@ -69,10 +70,16 @@ const Sidebar = ({ thememode, setthememode }) => {
       .then((data) => setgetweather(data))
       .catch((err) => console.log(err))
   }
+
   console.log(lat)
   console.log(lng)
   console.log(status)
+  let localtimeone =
+    typeof getweather.location === 'undefined'
+      ? 'loading...'
+      : getweather.location.localtime
 
+  console.log(localtimeone, 'this is localtiem')
   return (
     <div className="px-2 md:p-5">
       <div className="flex space-x-3 justify-between ">
@@ -148,14 +155,13 @@ const Sidebar = ({ thememode, setthememode }) => {
         </h1>
       </div>
       <div className="mb-5 drop-shadow-lg">
-        <h5 className="text-4xl">
+        <h5 className="text-4xl flex flex-col ">
           {/* {cityvalue}, {''} {''} */}
           <span>
             {''}
-            {typeof getweather.location === 'undefined'
-              ? 'loading...'
-              : getweather.location.localtime}
+            {Date(localtimeone).slice(0, 10).replace(' ', ', ')}
           </span>
+          {/* <span>{Date(localtimeone).slice(16, 21)}</span> */}
         </h5>
       </div>
 
