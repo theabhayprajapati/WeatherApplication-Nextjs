@@ -8,7 +8,7 @@ yarn create next-app --example with-tailwindcss with-tailwindcss-app
 
 [`Project Link`](https://bit.ly/3ITweqG)
 [`Project ScreenShots`]
-	![alt text](https://photos.app.goo.gl/7o7RCppuDsg32tT19)
+	
 
 ---
 
